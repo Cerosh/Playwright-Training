@@ -1,0 +1,10 @@
+[
+  {
+    "rule": "select-name",
+    "targets": [
+      [
+        "select"
+      ]
+    ]
+  }
+]

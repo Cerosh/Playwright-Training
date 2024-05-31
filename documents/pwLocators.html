@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playwright Built-in Locators</title>
+    <style>
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <span title="Built-in locators covered">6 locators</span>
+    <div>
+      <h2>Tag</h2>
+      <input
+        type="text"
+        id="usernameInputID"
+        class="usernameInputClass"
+        placeholder="Enter your username"
+        data-testid="usernameInputTestId"
+      />
+      <button
+        type="button"
+        id="usernameButtonID"
+        class="usernameButtonClass"
+        data-testid="usernameButtonTestId"
+        alt="Submit Button"
+      >
+        Submit
+      </button>
+      <label
+        type="label"
+        id="usernameLabelID"
+        class="usernameLabelClass"
+        data-testid="usernameLabelTestId"
+        alt="Username Label"
+      ></label>
+    </div>
+    <script>
+      document
+        .querySelector("#usernameButtonID")
+        .addEventListener("click", function () {
+          const username = document.getElementById("usernameInputID").value;
+          document.getElementById("usernameLabelID").innerText = username;
+        });
+    </script>
+    <div>
+      <h2>Days of the Week</h2>
+      <input
+        type="checkbox"
+        id="mondayCheckbox"
+        class="dayCheckbox"
+        value="Monday"
+        onchange="updateDays()"
+      />
+      <label for="mondayCheckbox">Monday</label><br />
+      <input
+        type="checkbox"
+        id="tuesdayCheckbox"
+        class="dayCheckbox"
+        value="Tuesday"
+        onchange="updateDays()"
+      />
+      <label for="tuesdayCheckbox">Tuesday</label><br />
+      <input
+        type="checkbox"
+        id="wednesdayCheckbox"
+        class="dayCheckbox"
+        value="Wednesday"
+        onchange="updateDays()"
+      />
+      <label for="wednesdayCheckbox">Wednesday</label><br />
+      <input
+        type="checkbox"
+        id="thursdayCheckbox"
+        class="dayCheckbox"
+        value="Thursday"
+        onchange="updateDays()"
+      />
+      <label for="thursdayCheckbox">Thursday</label><br />
+      <input
+        type="checkbox"
+        id="fridayCheckbox"
+        class="dayCheckbox"
+        value="Friday"
+        onchange="updateDays()"
+      />
+      <label for="fridayCheckbox">Friday</label><br />
+      <input
+        type="checkbox"
+        id="saturdayCheckbox"
+        class="dayCheckbox"
+        value="Saturday"
+        onchange="updateDays()"
+      />
+      <label for="saturdayCheckbox">Saturday</label><br />
+      <input
+        type="checkbox"
+        id="sundayCheckbox"
+        class="dayCheckbox"
+        value="Sunday"
+        onchange="updateDays()"
+      />
+      <label for="sundayCheckbox">Sunday</label><br />
+
+      <label id="selectedDaysLabel"></label>
+    </div>
+
+    <script>
+      function updateDays() {
+        const checkboxes = document.querySelectorAll(".dayCheckbox");
+        let selectedDays = "";
+        checkboxes.forEach((checkbox) => {
+          if (checkbox.checked) {
+            selectedDays += checkbox.value + ", ";
+          }
+        });
+        selectedDays = selectedDays.slice(0, -2); // Remove the trailing comma and space
+        document.getElementById("selectedDaysLabel").innerText =
+          "Selected Days: " + selectedDays;
+      }
+    </script>
+    <div>
+      <h2>Choose your drink:</h2>
+      <input
+        type="radio"
+        id="teaOption"
+        name="drink"
+        value="Tea"
+        onchange="updateDrinkSelection()"
+      />
+      <label for="teaOption">Tea</label><br />
+      <input
+        type="radio"
+        id="coffeeOption"
+        name="drink"
+        value="Coffee"
+        onchange="updateDrinkSelection()"
+      />
+      <label for="coffeeOption">Coffee</label><br />
+
+      <label id="selectedDrinkLabel"></label>
+    </div>
+
+    <script>
+      function updateDrinkSelection() {
+        const selectedDrink = document.querySelector(
+          'input[name="drink"]:checked',
+        ).value;
+        document.getElementById("selectedDrinkLabel").innerText =
+          "Selected Drink: " + selectedDrink;
+      }
+    </script>
+    <div>
+      <h2>Select a Month:</h2>
+      <select
+        id="monthSelect"
+        name="month"
+        aria-label="monthSelectLabel"
+        onchange="updateMonthSelection()"
+      >
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
+      <label id="selectedMonthLabel"></label>
+    </div>
+
+    <script>
+      function updateMonthSelection() {
+        const selectedMonth = document.getElementById("monthSelect").value;
+        document.getElementById("selectedMonthLabel").innerHTML =
+          "<strong>Selected Month:</strong> " + selectedMonth;
+      }
+    </script>
+
+    <div>
+      <h2>Accessibility:</h2>
+      <label for="fname">First name</label>
+      <input
+        name=""
+        type="text"
+        id="fname"
+        aria-describedby="int2"
+        aria-name="fname"
+        data-testid="fname-textbox"
+      />
+      <p id="int2">A bit of instructions for this field</p>
+    </div>
+    <div>
+      <h2>Filtering Locators:</h2>
+      <ul>
+        <li>
+          <h3 class="productLabel">Pink Lady Apples Medium</h3>
+          <button class="addToCartButton" data-testid="addToCartButtonTestId">
+            Add to cart
+          </button>
+        </li>
+        <li>
+          <h3 class="productLabel">Medium Navel Oranges</h3>
+          <button class="addToCartButton" data-testid="addToCartButtonTestId">
+            Add to cart
+          </button>
+        </li>
+        <br />
+        <label
+          type="label"
+          id="cartLabelID"
+          class="cartLabelClass"
+          data-testid="cartLabelTestId"
+          alt="cart Label"
+        ></label>
+      </ul>
+    </div>
+    <script>
+      document.querySelectorAll(".addToCartButton").forEach((button) => {
+        button.addEventListener("click", function () {
+          const parentLi = button.closest("li");
+          const productName = parentLi.querySelector(".productLabel").innerText;
+          console.log(productName);
+          document.getElementById("cartLabelID").innerText = productName;
+        });
+      });
+    </script>
+  </body>
+</html>
