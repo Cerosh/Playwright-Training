@@ -1,7 +1,9 @@
 import test, { expect } from "@playwright/test";
 
 test("for exploring the Playwright build-in locators", async ({ page }) => {
-  await page.goto("http://127.0.0.1:5500/documents/pwLocators.html");
+  await page.goto(
+    "http://127.0.0.1:5500/Playwright-Training/documents/pwLocators.html",
+  );
   await expect(page.title()).resolves.toContain("Playwright Built-in Locators");
   await page.getByPlaceholder("Enter your username").click();
   await page.getByTestId("usernameInputTestId").fill("Cerosh");

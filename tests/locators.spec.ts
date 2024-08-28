@@ -1,11 +1,13 @@
 import test, { expect } from "@playwright/test";
 
 test("for exploring the Playwright build-in locators", async ({ page }) => {
-  await page.goto("http://127.0.0.1:5500/documents/pwLocators.html");
+  await page.goto(
+    "http://127.0.0.1:5500/Playwright-Training/documents/pwLocators.html",
+  );
   await expect(page.title()).resolves.toContain("Playwright Built-in Locators");
   await page.locator("#usernameInputID").click();
   await page.locator(".usernameInputClass").fill("Cerosh");
-  await page.locator("button").click();
+  await page.locator("button").first().click();
   await expect(page.locator("#usernameLabelID")).toContainText("Cerosh");
   await page.locator("text=Monday").check();
   await expect(page.locator(':text("Selected Days: Monday")')).toBeVisible();

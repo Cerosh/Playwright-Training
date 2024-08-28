@@ -11,9 +11,46 @@ test.beforeEach(async ({}) => {
 });
 
 test.describe(
-  "two annotated tests",
+  "two annotated tests- Smoke",
   {
     tag: "@smoke",
+    annotation: {
+      type: "issue",
+      description: "https://github.com/microsoft/playwright/issues/23180",
+    },
+  },
+  () => {
+    test("with Step", async ({}) => {
+      await test.step("Step 1: Log in", async () => {
+        console.log("Login step executed");
+      });
+      await test.step("Step 2: Home Page", async () => {
+        console.log("Home Page Action");
+      });
+      await test.step("Step 3: Navigate", async () => {
+        console.log("Navigate to functionality A");
+      });
+    });
+
+    test.skip("Skipped Test", async ({}) => {
+      console.log("Skipped test code");
+    });
+
+    test("with Slow", async ({}) => {
+      test.slow();
+      console.log("Test executed with slow tag");
+    });
+
+    test.fail("Failing Test", async ({}) => {
+      console.log("Failing test code");
+    });
+  },
+);
+
+test.describe(
+  "two annotated tests-sanity",
+  {
+    tag: "@Regression",
     annotation: {
       type: "issue",
       description: "https://github.com/microsoft/playwright/issues/23180",
